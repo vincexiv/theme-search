@@ -27,7 +27,7 @@ function App() {
                 </Auth>
               </div>
             </div>
-            <Background />
+            {/* <Background /> */}
           </div>
         </main>
       </div>
