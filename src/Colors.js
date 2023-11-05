@@ -36,6 +36,15 @@ export const Colors = () => {
     setColorState(colorState => ({...colorState, theme: newTheme}))
   }
 
+  function getStyle(theme){
+    if(theme === colorState.theme){
+      return {
+        outline: "solid 0.1rem black",
+        borderRadius: "2px"
+      }
+    }
+  }
+
   return (
     <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
       <header className="px-5 py-4 border-b border-gray-100">
@@ -46,10 +55,10 @@ export const Colors = () => {
         <div className="p-3 bg-slate-100">    
           <h3 className="font-bold">Category</h3>
           <ul className="color-themes">
-            <li className="cursor-pointer" onClick={()=>updateTheme('light')}>Light</li>
-            <li className="cursor-pointer" onClick={()=>updateTheme('dark')}>Dark</li>
-            <li className="cursor-pointer" onClick={()=>updateTheme('warm')}>Warm</li>
-            <li className="cursor-pointer" onClick={()=>updateTheme('cold')}>Cold</li>
+            <li className="cursor-pointer" style={getStyle('light')} onClick={()=>updateTheme('light')}>Light</li>
+            <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
+            <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
+            <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
           </ul>
         </div>
 
