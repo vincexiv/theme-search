@@ -16,9 +16,9 @@ function App() {
       <div className="isolate bg-white">
         <main>
           <div className="p-5">
-            <h1 className="font-bold tracking-tight text-gray-900 sm:text-2xl">
+            {/* <h1 className="font-bold tracking-tight text-gray-900 sm:text-2xl">
               Colors
-            </h1>
+            </h1> */}
 
           </div>
           <div className="relative px-2 lg:px-8">
