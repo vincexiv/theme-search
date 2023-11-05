@@ -7,7 +7,7 @@ export const Login = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           data-name="Layer 1"
-          width="v-1/5"
+          // width="w-1/5"
           height="520.13854"
           viewBox="0 0 869.99994 520.13854"
           xlink="http://www.w3.org/1999/xlink">
@@ -78,7 +78,7 @@ export const Login = () => {
         </svg>
       </div>
 
-      <div style={{ width:"v-1/5", height:"520.13854"}}>
+      <div style={{ width:"w-1/5", height:"520.13854"}}>
         {/* <p>Welcome to color Themes</p> */}
         <button
           type="button"

@@ -1,47 +1,42 @@
+import { useState } from "react"
 import colors from "./data"
 
 function ColorCards({theme = 'light'}){
+    const [activeTheme, setActiveTheme] = useState({})
 
-    // function randomColor(theme){
-    //     if(theme === 'light'){
-    //         const val1 = Math.round(Math.random()*125, 0) + 125
-    //         const val2 = Math.round(Math.random()*125, 0) + 125
-    //         const val3 = Math.round(Math.random()*125, 0) + 125
-    
-    //         return `rgb(${val1}, ${val2}, ${val3})`
-    //     } else if (theme === 'dark'){
-    //         const val1 = Math.round(Math.random()*125, 0)
-    //         const val2 = Math.round(Math.random()*125, 0)
-    //         const val3 = Math.round(Math.random()*125, 0)   
-            
-    //         return `rgb(${val1}, ${val2}, ${val3})`
-    //     } else if (theme === 'warm'){
-    //         const val1 = Math.round(Math.random()*255, 0)
-    //         const val2 = Math.round(Math.random()*255, 0) * 0.7
-    //         const val3 = Math.round(Math.random()*255, 0) * 0.4
-            
-    //         return `rgb(${val1}, ${val2}, ${val3})`           
-    //     } else if (theme === 'cold'){
-    //         const val1 = Math.round(Math.random()*255, 0) * 0.4
-    //         const val2 = Math.round(Math.random()*255, 0) * 0.7
-    //         const val3 = Math.round(Math.random()*255, 0)   
-            
-    //         return `rgb(${val1}, ${val2}, ${val3})`             
-    //     }
-    // }
+    function updateActiveTheme(newTheme){
+        if(Object.keys(activeTheme).length){
+            setActiveTheme({})
+        } else {
+            setActiveTheme(newTheme)
+        }
+    }
 
     return (
         <div className="flex gap-5 flex-wrap">
             {
-                colors[theme].map(color => {
-                    return (
-                        <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}>
-                            <div style={{backgroundColor: color['color1'], display: "block", width: "16rem", height: "6rem"}}></div>
-                            <div style={{backgroundColor: color['color2'], display: "block", width: "16rem", height: "4rem"}}></div>
-                            <div style={{backgroundColor: color['color3'], display: "block", width: "16rem", height: "3rem"}}></div>
-                            <div style={{backgroundColor: color['color4'], display: "block", width: "16rem", height: "2rem"}}></div>
-                        </div>
-                    )
+                !!Object.keys(activeTheme).length ?
+                    <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}
+                        onClick={()=>updateActiveTheme(activeTheme)}>
+                        <div style={{backgroundColor: activeTheme['color1'], display: "block", width: "16rem", height: "6rem"}}></div>
+                        <div style={{backgroundColor: activeTheme['color2'], display: "block", width: "16rem", height: "4rem"}}></div>
+                        <div style={{backgroundColor: activeTheme['color3'], display: "block", width: "16rem", height: "3rem"}}></div>
+                        <div style={{backgroundColor: activeTheme['color4'], display: "block", width: "16rem", height: "2rem"}}></div>
+                    </div>  :
+                    colors[theme].map(color => {
+                        return (
+                            <div onClick={()=>updateActiveTheme(color)} key={`${color['color1']}-${color['color2']}-${color['color3']}-${color['color4']}`}>
+                                <div>
+
+                                </div>
+                                <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}>
+                                    <div style={{backgroundColor: color['color1'], display: "block", width: "16rem", height: "6rem"}}></div>
+                                    <div style={{backgroundColor: color['color2'], display: "block", width: "16rem", height: "4rem"}}></div>
+                                    <div style={{backgroundColor: color['color3'], display: "block", width: "16rem", height: "3rem"}}></div>
+                                    <div style={{backgroundColor: color['color4'], display: "block", width: "16rem", height: "2rem"}}></div>
+                                </div>
+                            </div>
+                        )
                 })
             }
         </div>
