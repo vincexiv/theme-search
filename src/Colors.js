@@ -44,12 +44,12 @@ export const Colors = () => {
 
       <div className="flex">
         <div className="p-3 bg-slate-100">    
-          <h3>Category</h3>
+          <h3 className="font-bold">Category</h3>
           <ul className="color-themes">
-            <li onClick={()=>updateTheme('light')}>Light</li>
-            <li onClick={()=>updateTheme('dark')}>Dark</li>
-            <li onClick={()=>updateTheme('warm')}>Warm</li>
-            <li onClick={()=>updateTheme('cold')}>Cold</li>
+            <li className="cursor-pointer" onClick={()=>updateTheme('light')}>Light</li>
+            <li className="cursor-pointer" onClick={()=>updateTheme('dark')}>Dark</li>
+            <li className="cursor-pointer" onClick={()=>updateTheme('warm')}>Warm</li>
+            <li className="cursor-pointer" onClick={()=>updateTheme('cold')}>Cold</li>
           </ul>
         </div>
 

@@ -35,7 +35,7 @@ function ColorCards({theme = 'light'}){
             {
                 [...Array(12).keys()].map(id => {
                     return (
-                        <div style={{display: "block", width: "16rem", height: "16rem"}}>
+                        <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}>
                             <div style={{backgroundColor: randomColor(theme), display: "block", width: "16rem", height: "6rem"}}></div>
                             <div style={{backgroundColor: randomColor(theme), display: "block", width: "16rem", height: "4rem"}}></div>
                             <div style={{backgroundColor: randomColor(theme), display: "block", width: "16rem", height: "3rem"}}></div>
