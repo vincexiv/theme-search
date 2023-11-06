@@ -5,7 +5,7 @@ export const Logout = () => {
     <button
       type="button"
       onClick={signOut}
-      className="text-sm rounded-md mt-16 px-3.5 py-1.5 text-base font-semibold leading-7 hover:bg-grey-500 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grey-600"
+      className="text-sm bg-indigo-600 text-white rounded-md mt-16 px-3 py-1.5 text-base font-semibold leading-7 hover:bg-grey-500 hover:bg-gray-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-grey-600"
     >
       <div className="flex items-center justify-center gap-1.5">
         <svg
@@ -14,7 +14,7 @@ export const Logout = () => {
           viewBox="0 0 24 24"
           strokeWidth={1.5}
           stroke="currentColor"
-          className="w-6 h-6"
+          className="w-6"
         >
         <path
           strokeLinecap="round"

@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { authSubscribe } from "@junobuild/core";
 import { Login } from "./Login";
-import { Logout } from "./Logout";
 
 export const AuthContext = createContext();
 
@@ -20,7 +19,6 @@ export const Auth = ({ children }) => {
         <div>
           {children}
 
-          <Logout />
         </div>
       ) : (
         <Login />

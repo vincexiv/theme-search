@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { listDocs } from "@junobuild/core";
 import { AuthContext } from "./Auth";
 import ColorCards from "./colorCards";
+import { Logout } from "./Logout";
 
 export const Colors = () => {
   const { user } = useContext(AuthContext);
@@ -60,6 +61,7 @@ export const Colors = () => {
             <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
             <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
           </ul>
+          <Logout />
         </div>
 
         <div className="p-3">

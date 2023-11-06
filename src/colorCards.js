@@ -21,13 +21,13 @@ function ColorCards({theme = 'light'}){
         <div className="flex gap-5 flex-wrap">
             {
                 !!Object.keys(activeTheme).length ?
-                    <div className="flex gap-4">
-                        <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}
+                    <div className="flex gap-3">
+                        <div className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}
                             onClick={()=>updateActiveTheme(activeTheme)}>
-                            <div style={{backgroundColor: activeTheme['color1'], display: "block", width: "16rem", height: "6rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color2'], display: "block", width: "16rem", height: "4rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color3'], display: "block", width: "16rem", height: "3rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color4'], display: "block", width: "16rem", height: "2rem"}}></div>
+                            <div style={{backgroundColor: activeTheme['color1'], display: "block", width: "15.2rem", height: "5rem"}}></div>
+                            <div style={{backgroundColor: activeTheme['color2'], display: "block", width: "15.2rem", height: "3.5rem"}}></div>
+                            <div style={{backgroundColor: activeTheme['color3'], display: "block", width: "15.2rem", height: "2.5rem"}}></div>
+                            <div style={{backgroundColor: activeTheme['color4'], display: "block", width: "15.2rem", height: "1.50rem"}}></div>
                         </div>
                         <div className="flex items-start flex-col">
                             <p>{activeTheme['color1']}</p>
@@ -42,11 +42,11 @@ function ColorCards({theme = 'light'}){
                                 <div>
 
                                 </div>
-                                <div className="cursor-pointer" style={{display: "block", width: "16rem", height: "16rem"}}>
-                                    <div style={{backgroundColor: color['color1'], display: "block", width: "16rem", height: "6rem"}}></div>
-                                    <div style={{backgroundColor: color['color2'], display: "block", width: "16rem", height: "4rem"}}></div>
-                                    <div style={{backgroundColor: color['color3'], display: "block", width: "16rem", height: "3rem"}}></div>
-                                    <div style={{backgroundColor: color['color4'], display: "block", width: "16rem", height: "2rem"}}></div>
+                                <div className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}>
+                                    <div style={{backgroundColor: color['color1'], display: "block", width: "15.2rem", height: "6rem"}}></div>
+                                    <div style={{backgroundColor: color['color2'], display: "block", width: "15.2rem", height: "4rem"}}></div>
+                                    <div style={{backgroundColor: color['color3'], display: "block", width: "15.2rem", height: "3rem"}}></div>
+                                    <div style={{backgroundColor: color['color4'], display: "block", width: "15.2rem", height: "2rem"}}></div>
                                 </div>
                             </div>
                         )
