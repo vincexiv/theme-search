@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import colors from "./data"
+import colors from "./utils/colors"
 
 function ColorCards({theme = 'light'}){
     const [activeTheme, setActiveTheme] = useState({})

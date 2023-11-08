@@ -1,4 +1,4 @@
-[
+const websiteURLs = [
     {
         url: 'https://images-platform.99static.com//MKAIsB2ncaoxFlDfmyG7ioyttpw=/255x0:966x711/fit-in/590x590/99designs-contests-attachments/72/72254/attachment_72254316',
         colors: {
@@ -550,3 +550,5 @@
         }
     },
 ]
+
+export default websiteURLs;
