@@ -6,7 +6,7 @@ import { Logout } from "./Logout";
 
 export const Colors = () => {
   const { user } = useContext(AuthContext);
-  const [colorState, setColorState] = useState({theme: 'light', items: []});
+  const [colorState, setColorState] = useState({theme: 'light', activeThemeColors: null, items: []});
 
   useEffect(() => {
     window.addEventListener("reload", list);
@@ -26,7 +26,7 @@ export const Colors = () => {
 
   useEffect(() => {
     if ([undefined, null].includes(user)) {
-      setColorState({theme: 'light', items: []});
+      setColorState({theme: 'light', activeThemeColors: null, items: []});
       return;
     }
 
@@ -46,29 +46,37 @@ export const Colors = () => {
     }
   }
 
+  function updateActiveTheme(activeThemeColors){
+    setColorState(colorState => ({...colorState, activeThemeColors: activeThemeColors}))
+  }
+
   return (
-    <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
-      <header className="px-5 py-4 border-b border-gray-100">
-        <h2 className="font-semibold text-gray-800">Choose a theme you would like for your website</h2>
-      </header>
+    <>
+      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
+        <header className="px-5 py-4 border-b border-gray-100">
+          <h2 className="font-semibold text-gray-800">Choose a theme you would like for your website</h2>
+        </header>
 
-      <div className="flex">
-        <div className="p-3 bg-slate-100">    
-          <h3 className="font-bold">Category</h3>
-          <ul className="color-themes">
-            <li className="cursor-pointer" style={getStyle('light')} onClick={()=>updateTheme('light')}>Light</li>
-            <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
-            <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
-            <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
-          </ul>
-          <Logout />
-        </div>
+        <div className="flex">
+          <div className="p-3 bg-slate-100">    
+            <h3 className="font-bold">Category</h3>
+            <ul className="color-themes">
+              <li className="cursor-pointer" style={getStyle('light')} onClick={()=>updateTheme('light')}>Light</li>
+              <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
+              <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
+              <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
+            </ul>
+            <Logout />
+          </div>
 
-        <div className="p-3">
-          <ColorCards theme={colorState.theme}/>
+          <div className="p-3">
+            <ColorCards theme={colorState.theme} activeThemeColors={colorState.activeThemeColors} updateActiveTheme={updateActiveTheme}/>
+          </div>
         </div>
       </div>
-
-    </div>
+      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
+        this is awesome man
+      </div>
+    </>
   );
 };

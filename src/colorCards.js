@@ -1,39 +1,24 @@
-import { useEffect, useState } from "react"
 import colors from "./utils/colors"
 
-function ColorCards({theme = 'light'}){
-    const [activeTheme, setActiveTheme] = useState({})
-
-    useEffect(()=>{
-        setActiveTheme({})
-    }, [theme])
-
-    function updateActiveTheme(newTheme){
-        if(Object.keys(activeTheme).length){
-            setActiveTheme({})
-        } else {
-            setActiveTheme(newTheme)
-        }
-    }
-
+function ColorCards({activeThemeColors, updateActiveTheme, theme = 'light'}){
 
     return (
         <div className="flex gap-5 flex-wrap">
             {
-                !!Object.keys(activeTheme).length ?
+                !!activeThemeColors && !!Object.keys(activeThemeColors).length ?
                     <div className="flex gap-3">
                         <div className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}
-                            onClick={()=>updateActiveTheme(activeTheme)}>
-                            <div style={{backgroundColor: activeTheme['color1'], display: "block", width: "15.2rem", height: "5rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color2'], display: "block", width: "15.2rem", height: "3.5rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color3'], display: "block", width: "15.2rem", height: "2.5rem"}}></div>
-                            <div style={{backgroundColor: activeTheme['color4'], display: "block", width: "15.2rem", height: "1.50rem"}}></div>
+                            onClick={()=>updateActiveTheme(null)}>
+                            <div style={{backgroundColor: activeThemeColors['color1'], display: "block", width: "15.2rem", height: "5rem"}}></div>
+                            <div style={{backgroundColor: activeThemeColors['color2'], display: "block", width: "15.2rem", height: "3.5rem"}}></div>
+                            <div style={{backgroundColor: activeThemeColors['color3'], display: "block", width: "15.2rem", height: "2.5rem"}}></div>
+                            <div style={{backgroundColor: activeThemeColors['color4'], display: "block", width: "15.2rem", height: "1.50rem"}}></div>
                         </div>
                         <div className="flex items-start flex-col">
-                            <p>{activeTheme['color1']}</p>
-                            <p>{activeTheme['color2']}</p>
-                            <p>{activeTheme['color3']}</p>
-                            <p>{activeTheme['color4']}</p>
+                            <p>{activeThemeColors['color1']}</p>
+                            <p>{activeThemeColors['color2']}</p>
+                            <p>{activeThemeColors['color3']}</p>
+                            <p>{activeThemeColors['color4']}</p>
                         </div>
                     </div> :
                     colors[theme].map(color => {
