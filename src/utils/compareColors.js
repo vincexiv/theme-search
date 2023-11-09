@@ -4,23 +4,32 @@ import websiteURLs from './websiteUrls';
 // const what = require('munkres-algorithm')
 
 function getWebsiteSimilarityRanks(themeColors){
-    console.log("theme colors: ", themeColors)
     if(themeColors){
-        const sortedWebUrls =  websiteURLs.sort((urlA, urlB) => {
+        const result = websiteURLs.sort((urlA, urlB) => {
             return compareColors(themeColors, urlA.colors) - compareColors(themeColors, urlB.colors)
         })
+
+        return removeDuplicates(result)
     
-        return sortedWebUrls.map(url => url.url)
     }else {
         return []
     }
 }
 
+function removeDuplicates(arr){
+    const usedUrls = new Set()
+
+    return arr.filter(item => {
+        if(usedUrls.has(item.url)){
+            return false
+        }else{
+            usedUrls.add(item.url)
+            return true
+        }
+    })
+}
+
 function compareColors(themeColors, websiteColors){
-    console.log("\ncomparing colors")
-    console.log("theme colors: ", themeColors)
-    console.log("website colors: ", websiteColors)
-    console.log("\n")
     const constMatrix = []
     getTopFourColors(websiteColors).forEach(webColor => {
         const webRGBColor = hexToRgb(webColor)
@@ -40,9 +49,7 @@ function compareColors(themeColors, websiteColors){
         constMatrix.push(colorDistance)
     })
 
-    console.log("hat wahtlhsghl : ", constMatrix)
     const {assignmentsWeight} = minWeightAssign(constMatrix)
-
 
     return assignmentsWeight
 }

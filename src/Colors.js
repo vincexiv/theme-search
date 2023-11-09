@@ -7,7 +7,7 @@ import getWebsiteSimilarityRanks from "./utils/compareColors";
 
 export const Colors = () => {
   const { user } = useContext(AuthContext);
-  const [colorState, setColorState] = useState({theme: 'light', activeThemeColors: null, items: []});
+  const [colorState, setColorState] = useState({theme: 'light', activeThemeColors: null, items: [], selectedImage: null});
 
   useEffect(() => {
     window.addEventListener("reload", list);
@@ -27,7 +27,7 @@ export const Colors = () => {
 
   useEffect(() => {
     if ([undefined, null].includes(user)) {
-      setColorState({theme: 'light', activeThemeColors: null, items: []});
+      setColorState({theme: 'light', activeThemeColors: null, items: [], selectedImage: null});
       return;
     }
 
@@ -51,37 +51,56 @@ export const Colors = () => {
     setColorState(colorState => ({...colorState, activeThemeColors: activeThemeColors}))
   }
 
+  function updateSelectedImage(webUrl){
+    setColorState(colorState => ({...colorState, selectedImage: webUrl}))
+  }
+
   return (
-    <>
-      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 sticky">
-        <header className="px-5 py-4 border-b border-gray-100">
-          <h2 className="font-semibold text-gray-800">Choose a theme you would like for your website</h2>
-        </header>
+    <div className="h-screen">
+      {
+        !colorState.selectedImage ?
+          <div className="w-full mx-auto bg-slate-50 shadow-lg rounded-sm border border-gray-200 mt-8 fixed top-0">
+            <header className="px-5 py-4 border-b border-gray-100">
+              <h2 className="font-semibold text-gray-800">Choose a theme you would like for your website</h2>
+            </header>
 
-        <div className="flex">
-          <div className="p-3 bg-slate-100">    
-            <h3 className="font-bold">Category</h3>
-            <ul className="color-themes">
-              <li className="cursor-pointer" style={getStyle('light')} onClick={()=>updateTheme('light')}>Light</li>
-              <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
-              <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
-              <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
-            </ul>
-            <Logout />
+            <div className="flex">
+              <div className="p-3 bg-slate-100">    
+                <h3 className="font-bold">Category</h3>
+                <ul className="color-themes">
+                  <li className="cursor-pointer" style={getStyle('light')} onClick={()=>updateTheme('light')}>Light</li>
+                  <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
+                  <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
+                  <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
+                </ul>
+                <Logout />
+              </div>
+
+              <div className="p-3">
+                <ColorCards theme={colorState.theme} activeThemeColors={colorState.activeThemeColors} updateActiveTheme={updateActiveTheme}/>
+              </div>
+            </div>
           </div>
 
-          <div className="p-3">
-            <ColorCards theme={colorState.theme} activeThemeColors={colorState.activeThemeColors} updateActiveTheme={updateActiveTheme}/>
-          </div>
-        </div>
-      </div>
-      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 flex flex-wrap gap-10">
+          : ''
+      }
         {
-          getWebsiteSimilarityRanks(colorState.activeThemeColors)?.map(webUrl => {
-            return <img src={webUrl} key={webUrl.replace(/\W/g, '')} alt={webUrl}/>
-          })
+          !colorState.selectedImage ?
+            <div className="w-full mt-72 h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 flex flex-wrap gap-10">
+              {
+                getWebsiteSimilarityRanks(colorState.activeThemeColors)?.map(webUrl => {
+                  return <img onClick={()=>updateSelectedImage(webUrl)} className="cursor-pointer" src={webUrl.url} key={webUrl.url.replace(/\W/g, '')} alt={webUrl.url}/>
+                })
+              }
+            </div>
+
+            :
+
+            <img 
+              onClick={()=>updateSelectedImage(null)}
+              className="cursor-pointer w-full"
+              src={colorState.selectedImage.url} alt={colorState.selectedImage.url}/>
         }
-      </div>
-    </>
+    </div>
   );
 };
