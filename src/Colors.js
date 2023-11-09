@@ -3,6 +3,7 @@ import { listDocs } from "@junobuild/core";
 import { AuthContext } from "./Auth";
 import ColorCards from "./colorCards";
 import { Logout } from "./Logout";
+import getWebsiteSimilarityRanks from "./utils/compareColors";
 
 export const Colors = () => {
   const { user } = useContext(AuthContext);
@@ -34,7 +35,7 @@ export const Colors = () => {
   }, [user]);
 
   function updateTheme(newTheme){
-    setColorState(colorState => ({...colorState, theme: newTheme}))
+    setColorState(colorState => ({...colorState, activeThemeColors: null, theme: newTheme}))
   }
 
   function getStyle(theme){
@@ -52,7 +53,7 @@ export const Colors = () => {
 
   return (
     <>
-      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
+      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 sticky">
         <header className="px-5 py-4 border-b border-gray-100">
           <h2 className="font-semibold text-gray-800">Choose a theme you would like for your website</h2>
         </header>
@@ -74,8 +75,12 @@ export const Colors = () => {
           </div>
         </div>
       </div>
-      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8">
-        this is awesome man
+      <div className="w-full h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 flex flex-wrap gap-10">
+        {
+          getWebsiteSimilarityRanks(colorState.activeThemeColors)?.map(webUrl => {
+            return <img src={webUrl} key={webUrl.replace(/\W/g, '')} alt={webUrl}/>
+          })
+        }
       </div>
     </>
   );
