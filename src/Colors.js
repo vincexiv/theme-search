@@ -86,7 +86,7 @@ export const Colors = () => {
       }
         {
           !colorState.selectedImage ?
-            <div className="w-full mt-72 h-full mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 flex flex-wrap gap-10">
+            <div className="w-full mt-80 mx-auto bg-white shadow-lg rounded-sm border border-gray-200 mt-8 flex flex-wrap gap-10">
               {
                 getWebsiteSimilarityRanks(colorState.activeThemeColors)?.map(webUrl => {
                   return <img onClick={()=>updateSelectedImage(webUrl)} className="cursor-pointer" src={webUrl.url} key={webUrl.url.replace(/\W/g, '')} alt={webUrl.url}/>
