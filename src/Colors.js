@@ -72,6 +72,8 @@ export const Colors = () => {
                   <li className="cursor-pointer" style={getStyle('dark')} onClick={()=>updateTheme('dark')}>Dark</li>
                   <li className="cursor-pointer" style={getStyle('warm')} onClick={()=>updateTheme('warm')}>Warm</li>
                   <li className="cursor-pointer" style={getStyle('cold')} onClick={()=>updateTheme('cold')}>Cold</li>
+                  <li className="cursor-pointer" style={getStyle('custom')} onClick={()=>updateTheme('custom')}>Custom</li>
+                  <li className="cursor-pointer" style={getStyle('new')} onClick={()=>updateTheme('new')}>New</li>
                 </ul>
                 <Logout />
               </div>

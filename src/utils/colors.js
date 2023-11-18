@@ -1,4 +1,5 @@
 const colors = {
+    custom: [],
     dark: [
       {
         color1: "rgb(30, 6, 54)",

@@ -109,3 +109,4 @@ function getTopFourColors(websiteColors){
 }
 
 export default getWebsiteSimilarityRanks;
+export {hexToRgb}

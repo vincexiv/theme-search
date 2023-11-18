@@ -1,6 +1,18 @@
 import colors from "./utils/colors"
+import { useState } from "react"
+import { hexToRgb } from "./utils/compareColors"
 
 function ColorCards({activeThemeColors, updateActiveTheme, theme = 'light'}){
+    const [customColors, setCustomColors] = useState({color1: '', color2: '', color3: '', color4: ''})
+
+    function updateCustomColor(e, x){
+        const val = hexToRgb(e.target.value)
+        setCustomColors((color) => ({...color, [x]: `rgb(${val.red}, ${val.green}, ${val.blue})`}))
+    }
+
+    function addCustomColor(){
+        colors['custom'].push(customColors)
+    }
 
     return (
         <div className="flex gap-5 flex-wrap">
@@ -21,6 +33,32 @@ function ColorCards({activeThemeColors, updateActiveTheme, theme = 'light'}){
                             <p>{activeThemeColors['color4']}</p>
                         </div>
                     </div> :
+
+                    theme === 'new' ?
+                            <div className="flex gap-10">
+                                <div onClick={()=>updateActiveTheme(customColors)} className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}>
+                                    <div style={{backgroundColor: customColors['color1'], display: "block", width: "15.2rem", height: "6rem"}}></div>
+                                    <div style={{backgroundColor: customColors['color2'], display: "block", width: "15.2rem", height: "4rem"}}></div>
+                                    <div style={{backgroundColor: customColors['color3'], display: "block", width: "15.2rem", height: "3rem"}}></div>
+                                    <div style={{backgroundColor: customColors['color4'], display: "block", width: "15.2rem", height: "2rem"}}></div>
+                                </div>
+                                <div>
+                                    <p>Pick custom theme</p>
+                                    <div>
+                                        <input  onChange={(e)=>updateCustomColor(e, 'color1')} value={customColors['color1']} type="color"/>
+                                        <input onChange={(e)=>updateCustomColor(e, 'color2')} value={customColors['color2']} type="color"/>
+                                        <input onChange={(e)=>updateCustomColor(e, 'color3')} value={customColors['color3']} type="color"/>
+                                        <input onChange={(e)=>updateCustomColor(e, 'color4')} value={customColors['color4']} type="color"/>
+                                    </div>
+
+                                    {
+                                        customColors['color1'] && customColors['color2'] && customColors['color3'] && customColors['color4'] ?
+
+                                        <button onClick={addCustomColor}>Save</button> : ''
+                                    }
+
+                                </div>
+                            </div> :
                     colors[theme].map(color => {
                         return (
                             <div onClick={()=>updateActiveTheme(color)} key={`${color['color1']}-${color['color2']}-${color['color3']}-${color['color4']}`}>
