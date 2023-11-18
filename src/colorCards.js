@@ -7,11 +7,21 @@ function ColorCards({activeThemeColors, updateActiveTheme, theme = 'light'}){
 
     function updateCustomColor(e, x){
         const val = hexToRgb(e.target.value)
-        setCustomColors((color) => ({...color, [x]: `rgb(${val.red}, ${val.green}, ${val.blue})`}))
+        setCustomColors((color) => ({...color, [x]: e.target.value}))
     }
 
     function addCustomColor(){
-        colors['custom'].push(customColors)
+        const color1 = hexToRgb(customColors.color1)
+        const color2 = hexToRgb(customColors.color1)
+        const color3 = hexToRgb(customColors.color2)
+        const color4 = hexToRgb(customColors.color3)
+
+        colors['custom'].push({
+            color1: `rgb(${color1.red}, ${color1.green}, ${color1.blue})`,
+            color2: `rgb(${color2.red}, ${color2.green}, ${color2.blue})`,
+            color3: `rgb(${color3.red}, ${color3.green}, ${color3.blue})`,
+            color4: `rgb(${color4.red}, ${color4.green}, ${color4.blue})`
+        })
     }
 
     return (
@@ -36,7 +46,7 @@ function ColorCards({activeThemeColors, updateActiveTheme, theme = 'light'}){
 
                     theme === 'new' ?
                             <div className="flex gap-10">
-                                <div onClick={()=>updateActiveTheme(customColors)} className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}>
+                                <div className="cursor-pointer" style={{display: "block", width: "15.2rem", height: "15.2rem"}}>
                                     <div style={{backgroundColor: customColors['color1'], display: "block", width: "15.2rem", height: "6rem"}}></div>
                                     <div style={{backgroundColor: customColors['color2'], display: "block", width: "15.2rem", height: "4rem"}}></div>
                                     <div style={{backgroundColor: customColors['color3'], display: "block", width: "15.2rem", height: "3rem"}}></div>
